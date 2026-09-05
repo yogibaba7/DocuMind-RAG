@@ -7,7 +7,7 @@ load_dotenv()
 
 def create_model():
     llm = HuggingFaceEndpoint(
-                repo_id="Qwen/Qwen2.5-7B-Instruct",
+                repo_id="openai/gpt-oss-120b",
                 task="text-generation",
                 huggingfacehub_api_token=os.getenv("HUGGINGFACE_API_KEY"),
                 max_new_tokens=512,

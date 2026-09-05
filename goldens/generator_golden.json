@@ -1,0 +1,78 @@
+[
+  {
+    "input": "Can the company terminate me without giving any reason?",
+    "expected_output": "Yes. Unless you have a written employment agreement that says otherwise, employment is 'at-will,' meaning employees may be terminated with or without cause, and employees are also free to leave employment with or without cause.",
+    "ideal_context": [
+      "2 \n \n \nIII. \nVOLUNTARY AT-WILL EMPLOYMENT \nUnless an employee has a written employment agreement with {ORGANIZATION \nNAME}, which provides differently, all employment at {ORGANIZATION NAME} is “at-will.” \n That means that employees may be terminated from employment with {ORGANIZATION \nNAME} with or without cause, and employees are free to leave the employment of \n{ORGANIZATION NAME} with or without cause. Any representation by any"
+    ]
+  },
+  {
+    "input": "If I face harassment at work, who do I go and complain to?",
+    "expected_output": "You should report the incident immediately to your supervisor or to the Executive Director. If the allegation of harassment is against the Executive Director, you should notify the staff member designated as grievance officer.",
+    "ideal_context": [
+      "5 \n \n \nReporting of Harassment: If you believe that you have experienced or witnessed sexual \nharassment or other discriminatory harassment by any employee of {ORGANIZATION \nNAME}, you should report the incident immediately to your supervisor or to the Executive \nDirector. Possible harassment by others with whom {ORGANIZATION NAME} has a business \nrelationship, including customers and vendors, should also be reported as soon as possible so \nthat appropriate action can be taken.",
+      "discriminatory harassment with the Executive Director. In the case where the allegation of \nharassment is against the Executive Director, please notify the staff member designated as \ngrievance officer. \nVI. \nSOLICITATION \n \nEmployees are prohibited from soliciting (personally or via electronic mail) for \nmembership, pledges, subscriptions, the collection of money or for any other unauthorized \npurpose anywhere on {ORGANIZATION NAME} property during work time, especially those"
+    ]
+  },
+  {
+    "input": "Sir, what are the normal office timings here?",
+    "expected_output": "The normal work week consists of five 7-hour days. Ordinarily, work hours are from 9:00 a.m. to 5:00 p.m., Monday through Friday, including one hour (unpaid) for lunch.",
+    "ideal_context": [
+      "6 \n \nVII. \nHOURS OF WORK, ATTENDANCE AND PUNCTUALITY \nA. Hours of Work \nThe normal work week for {ORGANIZATION NAME} shall consist of five (5), seven (7) \nhour days. Ordinarily, work hours are from 9:00 a.m. - 5:00 p.m., Monday through Friday, \nincluding one hour (unpaid) for lunch. Employees may request the opportunity to vary their \nwork schedules (within employer-defined limits) to better accommodate personal \nresponsibilities. Subject to {ORGANIZATION NAME} work assignments and Executive"
+    ]
+  },
+  {
+    "input": "Do we get extra pay for working overtime?",
+    "expected_output": "Overtime pay, applicable only to Non-Exempt Employees, is for any time worked in excess of 40 hours in a work week. The overtime rate is one and a half times the employee's straight time rate, except on Sundays or holidays when it is two times the regular rate.",
+    "ideal_context": [
+      "C. Overtime \n \nOvertime pay, which is applicable only to Non-Exempt Employees, is for any time \nworked in excess of 40 hours in a work week. Only the Executive Director or his or her \ndesignee, upon the request of an employeeʹs supervisor, may authorize overtime. Overtime \nrate is one and one-half time (11⁄2) the employeeʹs straight time rate, except in instances",
+      "7 \n \ninvolving a Sunday or holidays when the rate is two times the regular rate. Payment of \novertime will be provided in the pay period following the period in which it is earned. \n \n \nVIII. \nEMPLOYMENT POLICIES AND PRACTICES \nA. Definition of Terms \n1. \nEmployer. The {Organization Name} is the employer of all full-time, part-time \nand temporary employees. An employee is hired, provided compensation and \napplicable benefits, and has his or her work directed and evaluated by"
+    ]
+  },
+  {
+    "input": "Does the company provide health insurance?",
+    "expected_output": "Yes, the organization currently provides individual health and dental insurance benefits for eligible full-time and part-time employees, except those insured through their spouse, retired military, or other plans, beginning after the first full month of employment.",
+    "ideal_context": [
+      "if permitted by policies and statutes. The Executive Director will determine levels of \ndeductibility and co-payments for all insurance related benefits annually. \n \nA. Health/Life Insurance \n{ORGANIZATION NAME} currently provides individual health and dental insurance \nbenefits for eligible full-time and part-time employees except those who are insured through \ntheir spouse, retired military, or other plans, beginning after the first full month of employment.",
+      "Eligible employees may elect to participate in available health plan(s) offered by \n{ORGANIZATION NAME}. {ORGANIZATION NAME} presently pays the individual \ninsurance premium for all eligible employees. {ORGANIZATION NAME} may require \nemployees to pay a portion of insurance premium in the future. Information about \n{ORGANIZATION NAME}ʹs health plan(s) will be provided to the employee at the time of \nemployment. \n \nB. Social Security/Medicare/Medicaid"
+    ]
+  },
+  {
+    "input": "How much vacation leave do I get in my very first year?",
+    "expected_output": "During the first 90 days of employment, employees do not earn vacation benefits. During the remaining nine months of the first year, a full-time employee will earn two weeks (10 days) of paid vacation.",
+    "ideal_context": [
+      "11 \n \n \nDuring the first 90 days of employment full- and part-time employees will not earn \nVacation benefits. During the remaining nine months of first year employment, a full-time \nemployee will earn two weeks (10 days) of paid Vacation. \n \n \nFull-time employees will continue to earn two weeks (10 days) of Vacation during the \nsecond year of employment. In their third year of employment, full-time employees will earn"
+    ]
+  },
+  {
+    "input": "How many sick leaves do we earn per month?",
+    "expected_output": "Sick leave benefits are earned on a prorated basis of one day (7 hours) per month for full-time employees, beginning on their first day of employment.",
+    "ideal_context": [
+      "fall below the ceiling, the employee starts to accrue leave again from that date forward until he \nor she reaches his or her Vacation ceiling. Accordingly, employees are encouraged to use all \nVacation benefits in the fiscal year in which they are earned in order to avoid reaching the \nceiling limit. \n \nC. Sick Leave \n \nSick leave benefits are earned on a prorated basis of one day (7 hours) per month for \nfull-time employees beginning at first day of employment. Part-time employees receive",
+      "prorated sick leave benefits, (i.e., 3.5 hours per month if the Employee works 17.5 hours per \nweek). Temporary employees are not eligible for paid sick leave benefits. Use of sick leave is \nsubject to approval by the supervisor and the Executive Director and must be requested in \nhourly increments. \n \n \nUnused sick leave can accumulate from year to year up to a maximum of 30 days (210 \nhours) for full-time employees. This limitation on accrual of sick leave benefits is prorated"
+    ]
+  },
+  {
+    "input": "How much notice do I need to give before resigning?",
+    "expected_output": "The organization encourages employees to provide at least two weeks (10 days) written notice prior to intended separation.",
+    "ideal_context": [
+      "business are reimbursed at the U.S. Internal Revenue Service approved rate. \n \n \nForms are provided to request reimbursement for actual expenses and advance payment \nfor travel. Receipts must be provided for all expenditures made in order to claim \nreimbursement. \nXIV. \nSEPARATION \nEither {ORGANIZATION NAME} or the employee may initiate separation. \n{ORGANIZATION NAME} encourages employees to provide at least two weeks (10 days)",
+      "written notice prior to intended separation. After receiving such notice, an exit interview will be \nscheduled by the Executive Director or his or her designee. The Executive Director has \nauthority to employ or separate all other employees. \n \nCircumstances under which separation may occur include:"
+    ]
+  },
+  {
+    "input": "Is my office email private, or can the company read it?",
+    "expected_output": "No, it is not private. All data in the organization's computer and communication systems, including documents, e-mail, and recorded voice mail messages, are the property of the organization, which may inspect and monitor such data at any time. No individual should have any expectation of privacy for messages or data in these systems.",
+    "ideal_context": [
+      "(including documents, other electronic files, e-mail and recorded voice mail messages) are the \nproperty of {ORGANIZATION NAME}. {ORGANIZATION NAME} may inspect and monitor \nsuch data at any time. No individual should have any expectation of privacy for messages or \nother data recorded in {ORGANIZATION NAME}’s systems. This includes documents or \nmessages marked “private,” which may be inaccessible to most users but remain available to"
+    ]
+  },
+  {
+    "input": "What is the company's stand on equal opportunity in jobs?",
+    "expected_output": "The organization is committed to providing equal employment opportunity for all employees and applicants without regard to race, color, religion, national origin, sex, age, marital status, sexual orientation, disability, political affiliation, personal appearance, family responsibilities, matriculation, or any other characteristic protected under federal, state, or local law. Each person is evaluated on the basis of personal skill and merit.",
+    "ideal_context": [
+      "discriminate against any employee or applicant in a manner that violates the law. \n{ORGANIZATION NAME} is committed to providing equal opportunity for all employees and \napplicants without regard to race, color, religion, national origin, sex, age, marital status, sexual \norientation, disability, political affiliation, personal appearance, family responsibilities, \nmatriculation or any other characteristic protected under federal, state or local law. Each",
+      "person is evaluated on the basis of personal skill and merit. {ORGANIZATION NAME}’s \npolicy regarding equal employment opportunity applies to all aspects of employment, \nincluding recruitment, hiring, job assignments, promotions, working conditions, scheduling, \nbenefits, wage and salary administration, disciplinary action, termination, and social, \neducational and recreational programs. The Executive Director shall act as the responsible"
+    ]
+  }
+]

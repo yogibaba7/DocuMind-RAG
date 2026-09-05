@@ -1,108 +1,145 @@
 # 📄 DocuMind-RAG
 
-> An AI-powered Document Intelligence system built with LangChain and Retrieval-Augmented Generation (RAG).
+> An enterprise-grade, LangChain-powered Document Intelligence system designed for accurate, citation-backed question answering over complex PDF documents.
 
-DocuMind-RAG allows users to upload a PDF document and ask questions about its content. The system retrieves the most relevant sections from the document and uses a Large Language Model (LLM) to generate grounded answers.
-
-The project is being developed as a modular Document Intelligence platform, with additional capabilities planned beyond question answering.
+Built with an **Advanced RAG Architecture**: **HyDE Query Expansion $\rightarrow$ Hybrid Search (Dense FAISS + Sparse BM25) $\rightarrow$ Cross-Encoder Reranking**, systematically benchmarked and evaluated using **DeepEval**.
 
 ---
 
-## 🚀 Current Functionality
+## 🌟 Key Features
 
-### 💬 Document Q&A
+- **Multi-Stage Advanced Retrieval**:
+  - **HyDE (Hypothetical Document Embeddings)**: Bridges vocabulary gaps between user queries and document passages using `qwen/qwen3.8-27b` via Groq.
+  - **Hybrid Search**: Combines dense semantic retrieval (`sentence-transformers/all-MiniLM-L6-v2` in FAISS) and sparse lexical retrieval (`BM25`) with candidate oversampling ($3\times$).
+  - **Cross-Encoder Reranker**: Scores query-document pairs using `cross-encoder/ms-marco-MiniLM-L-6-v2` to eliminate rank inversion and place the most relevant chunks at the top.
+- **Conversational RAG Chain**: Query contextualization with chat history, grounded answer generation, and precise source citations (`[Source X | Page Y]`).
+- **Interactive Streamlit Web Interface**: Real-time PDF upload, indexing metrics visualization, streaming chat responses, and expandable source verification cards.
+- **Systematic Evaluation Framework**: Automated retriever and generator evaluation using **DeepEval** and a remote, high-throughput `GroqJudge`.
 
-Users can:
+---
 
-- Upload a PDF document
-- Ask questions about the document
-- Ask follow-up questions using conversation history
-- Get answers grounded in the uploaded document
-- Use conversational RAG for context-aware questions
+## 📊 Benchmark & Evaluation Results
 
-Example:
+Evaluated against 10 golden test cases curated from standard legal/policy documentation:
 
-```text
-User:
-What is LangChain?
+### 1. Retriever Benchmarks
+| Metric | Baseline (Naive Hybrid) | Advanced (HyDE + CrossEncoder) | Improvement |
+| :--- | :---: | :---: | :---: |
+| **Contextual Recall** | 0.92 avg (60% pass rate) | **1.00 avg (100.00% pass rate)** | **+40%** |
+| **Contextual Precision** | 0.78 avg (30% pass rate) | **0.84 avg (100.00% pass rate)** | **+70%** |
+| **Contextual Relevancy** | 0.42 avg (27% pass rate) | **0.40 avg (30.00% pass rate)** | Stable |
 
-AI:
-LangChain is ...
+### 2. Generator Benchmarks
+| Metric | Average Score | Pass Rate | Status |
+| :--- | :---: | :---: | :---: |
+| **Answer Relevancy** | **0.98** | **100.00%** (10/10 passed) | 🌟 Direct & Complete |
+| **Faithfulness** | **0.91** | **90.00%** (9/10 passed) | 🌟 Highly Grounded |
+| **Overall Pass Rate** | — | **90.00%** | Meets Production SLA |
 
-User:
-What are its main components?
+---
 
-AI:
-The main components are ...
-```
-🧠 Architecture
-```text
-The current system follows a conversational RAG architecture:
-                    PDF
-                     │
-                     ▼
-              PyPDFLoader
-                     │
-                     ▼
-        RecursiveCharacterTextSplitter
-                     │
-                     ▼
-          Hugging Face Embeddings
-                     │
-                     ▼
-                    FAISS
-                     │
-                     ▼
-                 Retriever
-                     ▲
-                     │
-        Chat History + Question
-                     │
-                     ▼
-          Query Contextualization
-                     │
-                     ▼
-           Standalone Question
-                     │
-                     ▼
-                 Retriever
-                     │
-                     ▼
-            Relevant Documents
-                     │
-                     ▼
-           Context + Chat History
-                     │
-                     ▼
-              PromptTemplate
-                     │
-                     ▼
-             ChatHuggingFace
-                     │
-                     ▼
-             StrOutputParser
-                     │
-                     ▼
-                  Answer
+## 🏗️ Architecture
+
+```mermaid
+flowchart TD
+    subgraph Ingestion["1. Document Ingestion"]
+        PDF["PDF Document"] --> Chunk["PyMuPDF + RecursiveCharacterTextSplitter"]
+        Chunk --> FAISS["Dense Vector Store (all-MiniLM-L6-v2)"]
+        Chunk --> BM25["Sparse Keyword Store (BM25)"]
+    end
+
+    subgraph Retrieval["2. Advanced Retrieval & Reranking"]
+        Q["User Query"] --> HyDE["HyDE Model (qwen3.8-27b on Groq)"]
+        HyDE --> DenseSearch["FAISS Search (15 candidates)"]
+        Q --> SparseSearch["BM25 Search (15 candidates)"]
+        DenseSearch --> Merge["Candidate Deduplication"]
+        SparseSearch --> Merge
+        Merge --> Rerank["Cross-Encoder Reranker (ms-marco-MiniLM-L-6-v2)"]
+        Rerank --> TopK["Top-5 Ranked Chunks"]
+    end
+
+    subgraph QA["3. Grounded Generation"]
+        TopK --> Formatter["Citation Formatter"]
+        Formatter --> LLM["Chat LLM (Groq / HuggingFace)"]
+        LLM --> Stream["Streaming Answer + Citations in UI"]
+    end
 ```
 
-🛠️ Tech Stack
+---
+
+## 📂 Project Structure
+
 ```text
-Framework
-Python
-Streamlit
-LangChain
-Document Processing
-PyPDFLoader
-RecursiveCharacterTextSplitter
-Embeddings
-Hugging Face Embedding Models
-Vector Database
-FAISS
-LLM
-Hugging Face Chat Models
-RAG
-Similarity Retrieval
-Conversational Query Contextualization
-LCEL (LangChain Expression Language)
+Youtube_chatbot_using_rag/
+├── data/
+│   └── sample_policies.pdf         # Sample evaluation document
+├── eval/
+│   ├── eval_retriever.py           # DeepEval automated retriever evaluation
+│   ├── eval_generator.py           # DeepEval automated generator evaluation
+│   └── graq_judge.py               # Custom remote GroqJudge & LLM judges
+├── goldens/
+│   ├── retriever_golden.json       # Golden dataset for retrieval
+│   └── generator_golden.json       # Golden dataset with ideal chunks for generation
+├── scripts/
+│   ├── app.py                      # Full Streamlit web UI
+│   ├── generation.py               # LLM creation factory
+│   ├── rag_chain.py                # Conversational RAG chain logic
+│   └── retriever.py                # HyDE + Hybrid + CrossEncoder pipeline
+├── app.py                          # Application entry point
+├── documentation.md                # Comprehensive technical documentation & engineering journal
+├── requirements.txt                # Production dependencies
+└── .env.example                    # Safe environment template
 ```
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone & Setup Environment
+```bash
+git clone https://github.com/yogibaba7/DocuMind-RAG.git
+cd DocuMind-RAG
+
+python -m venv myenv
+# On Windows:
+.\myenv\Scripts\activate
+# On Linux/macOS:
+source myenv/bin/activate
+
+pip install -r requirements.txt
+```
+
+### 2. Configure API Keys
+Copy `.env.example` to `.env` and fill in your keys:
+```bash
+cp .env.example .env
+```
+Edit `.env`:
+```ini
+GROQ_API_KEY=gsk_...
+HUGGINGFACE_API_KEY=hf_...
+```
+
+### 3. Launch the Web App
+```bash
+streamlit run app.py
+```
+Open `http://localhost:8501` in your browser.
+
+### 4. Run Automated Evaluations
+```powershell
+# Set UTF-8 encoding (recommended on Windows):
+$env:PYTHONIOENCODING='utf-8'; $env:PYTHONUTF8='1'
+
+# Evaluate Retriever (Recall, Precision, Relevancy):
+python -m eval.eval_retriever
+
+# Evaluate Generator (Faithfulness, Answer Relevancy):
+python -m eval.eval_generator
+```
+
+---
+
+## 📖 Documentation & Engineering Journal
+
+For in-depth architectural specifications, design rationales, troubleshooting, and problem-solution entries (`[PRB-001]` through `[PRB-006]`), refer to **[`documentation.md`](documentation.md)**.

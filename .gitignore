@@ -1,3 +1,68 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+myenv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment Variables & Confidential Files
 .env
-myenv
-__pycache__
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+secrets.json
+
+# DeepEval Cache, Telemetry & Logs
+.deepeval/
+.deepeval-cache/
+
+# Local Vector Databases & Caches
+faiss_index/
+.cache/
+
+# Local Temporary Files & Artifacts
+temp.pdf
+*.tmp
+*.log
+test.py
+test1.py
+
+# IDE & Editor Configs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
