@@ -197,6 +197,12 @@ with st.sidebar:
         help="Expands the user question into a hypothetical answer before retrieval to improve semantic matches.",
     )
 
+    use_compression = st.toggle(
+        "Enable Contextual Compression",
+        value=True,
+        help="Extracts verbatim relevant spans from retrieved chunks using an extractor LLM, pruning irrelevant context.",
+    )
+
     force_rebuild = st.checkbox(
         "Force Re-index",
         value=False,
@@ -261,7 +267,11 @@ if uploaded_file:
 
                 # Initialize RAG Engine
                 st.session_state.retriever = retriever
-                st.session_state.rag_engine = ConversationalRAGEngine(retriever=retriever, model=model)
+                st.session_state.rag_engine = ConversationalRAGEngine(
+                    retriever=retriever,
+                    model=model,
+                    use_compression=use_compression,
+                )
                 st.session_state.document_metrics = metrics
                 st.session_state.active_file_id = file_id
                 st.session_state.chat_history = []
@@ -277,10 +287,11 @@ if uploaded_file:
                 status.update(label=f"❌ Error indexing document: {e}", state="error")
                 st.error(f"Failed to process document: {e}")
 
-    # Synchronize retriever parameters if changed dynamically in sidebar
-    elif st.session_state.retriever is not None:
+    # Synchronize retriever and engine parameters if changed dynamically in sidebar
+    elif st.session_state.retriever is not None and st.session_state.rag_engine is not None:
         st.session_state.retriever.top_k = top_k
         st.session_state.retriever.use_hyde = use_hyde
+        st.session_state.rag_engine.use_compression = use_compression
         # Update model in rag_engine if parameters or model choice changed
         try:
             st.session_state.rag_engine.model = create_model(
@@ -289,6 +300,7 @@ if uploaded_file:
                 max_tokens=max_tokens,
                 streaming=True,
             )
+            st.session_state.rag_engine.extractor_model = st.session_state.rag_engine.model
         except Exception as e:
             st.warning(f"Could not re-initialize model '{selected_model_id}': {e}")
 
@@ -360,21 +372,22 @@ else:
                     if standalone_q:
                         st.caption(f"**Contextualized Search Query:** `{standalone_q}`")
 
-                    for idx, doc in enumerate(sources, start=1):
-                        page_num = doc.metadata.get("page_number", doc.metadata.get("page", 0) + 1)
-                        source_name = doc.metadata.get("source_file", "PDF")
-                        snippet = clean_text(doc.page_content)
+                        for idx, doc in enumerate(sources, start=1):
+                            page_num = doc.metadata.get("page_number", doc.metadata.get("page", 0) + 1)
+                            source_name = doc.metadata.get("source_file", "PDF")
+                            snippet = clean_text(doc.page_content)
+                            comp_badge = '<span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); margin-left: 4px;">⚡ Verbatim Extracted</span>' if doc.metadata.get("compressed") else ''
 
-                        st.markdown(
-                            f"""
-                            <div class="source-card">
-                                <span class="badge">Source {idx}</span>
-                                <b>{source_name} (Page {page_num})</b>
-                                <p style="margin-top: 6px; white-space: pre-wrap;">{snippet}</p>
-                            </div>
-                            """,
-                            unsafe_allow_html=True,
-                        )
+                            st.markdown(
+                                f"""
+                                <div class="source-card">
+                                    <span class="badge">Source {idx}</span>{comp_badge}
+                                    <b>{source_name} (Page {page_num})</b>
+                                    <p style="margin-top: 6px; white-space: pre-wrap;">{snippet}</p>
+                                </div>
+                                """,
+                                unsafe_allow_html=True,
+                            )
 
     # ------------------------------------------------------------
     # CHAT INPUT & STREAMING GENERATION
@@ -413,11 +426,12 @@ else:
                             page_num = doc.metadata.get("page_number", doc.metadata.get("page", 0) + 1)
                             source_name = doc.metadata.get("source_file", "PDF")
                             snippet = clean_text(doc.page_content)
+                            comp_badge = '<span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); margin-left: 4px;">⚡ Verbatim Extracted</span>' if doc.metadata.get("compressed") else ''
 
                             st.markdown(
                                 f"""
                                 <div class="source-card">
-                                    <span class="badge">Source {idx}</span>
+                                    <span class="badge">Source {idx}</span>{comp_badge}
                                     <b>{source_name} (Page {page_num})</b>
                                     <p style="margin-top: 6px; white-space: pre-wrap;">{snippet}</p>
                                 </div>

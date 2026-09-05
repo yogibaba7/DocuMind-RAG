@@ -12,8 +12,9 @@ Built with an **Advanced RAG Architecture**: **HyDE Query Expansion $\rightarrow
   - **HyDE (Hypothetical Document Embeddings)**: Bridges vocabulary gaps between user queries and document passages using `qwen/qwen3.8-27b` via Groq.
   - **Hybrid Search**: Combines dense semantic retrieval (`sentence-transformers/all-MiniLM-L6-v2` in FAISS) and sparse lexical retrieval (`BM25`) with candidate oversampling ($3\times$).
   - **Cross-Encoder Reranker**: Scores query-document pairs using `cross-encoder/ms-marco-MiniLM-L-6-v2` to eliminate rank inversion and place the most relevant chunks at the top.
+  - **Contextual Compression & Verbatim Extractor**: Uses an extractor LLM to prune irrelevant chunks and extract tightly-scoped verbatim spans from retrieved passages.
 - **Conversational RAG Chain**: Query contextualization with chat history, grounded answer generation, and precise source citations (`[Source X | Page Y]`).
-- **Interactive Streamlit Web Interface**: Real-time PDF upload, indexing metrics visualization, streaming chat responses, and expandable source verification cards.
+- **Interactive Streamlit Web Interface**: Real-time PDF upload, indexing metrics visualization, streaming chat responses, verbatim extraction toggle, and expandable source verification cards.
 - **Systematic Evaluation Framework**: Automated retriever and generator evaluation using **DeepEval** and a remote, high-throughput `GroqJudge`.
 
 ---
@@ -58,8 +59,14 @@ flowchart TD
         Rerank --> TopK["Top-5 Ranked Chunks"]
     end
 
-    subgraph QA["3. Grounded Generation"]
-        TopK --> Formatter["Citation Formatter"]
+    subgraph Compression["3. Contextual Compression"]
+        TopK --> Extractor["Context Extractor LLM (Verbatim Extraction)"]
+        Q --> Extractor
+        Extractor --> Filter["Pruned Context Spans"]
+    end
+
+    subgraph QA["4. Grounded Generation"]
+        Filter --> Formatter["Citation Formatter"]
         Formatter --> LLM["Chat LLM (Groq / HuggingFace)"]
         LLM --> Stream["Streaming Answer + Citations in UI"]
     end

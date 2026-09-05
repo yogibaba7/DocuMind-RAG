@@ -1,3 +1,4 @@
+import time
 from typing import List, Dict, Any, Generator, Tuple, Optional
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
@@ -35,6 +36,94 @@ def format_docs_with_citations(documents: List[Document]) -> str:
 def format_docs_simple(documents: List[Document]) -> str:
     """Simple newline joining of document content."""
     return "\n\n".join(doc.page_content for doc in documents)
+
+
+# ============================================================
+# CONTEXT COMPRESSION & EXTRACTION
+# ============================================================
+
+COMPRESSOR_PROMPT = """You are a context extraction system used in a retrieval pipeline.
+
+Your ONLY job is to extract verbatim spans or tightly-scoped excerpts from the DOCUMENT that are relevant to answering the QUESTION.
+
+Rules:
+1. Extract only text that is explicitly present in the document — do not paraphrase, summarize, infer, or add anything.
+2. Do not answer the question. Do not draw conclusions. Do not explain your reasoning.
+3. Preserve the original wording of extracted text exactly as it appears.
+4. You may extract multiple non-contiguous snippets if needed; separate them with "..." on their own line.
+5. If nothing in the document is relevant, output exactly: NO_RELEVANT_CONTEXT
+6. Never output any text other than the extracted content or the NO_RELEVANT_CONTEXT flag — no preamble, no labels, no commentary.
+
+Question:
+{query}
+
+Document:
+{document}
+
+Return only the relevant information."""
+
+
+def compress_document(
+    doc: Document,
+    query: str,
+    extractor_model: BaseChatModel,
+) -> Optional[Document]:
+    """
+    Extracts relevant verbatim spans from a single retrieved document chunk using the extractor LLM.
+    If no relevant information is found, returns None to prune the chunk.
+    """
+    prompt = ChatPromptTemplate.from_template(COMPRESSOR_PROMPT)
+    chain = prompt | extractor_model | StrOutputParser()
+
+    extracted = None
+    for attempt in range(3):
+        try:
+            extracted = chain.invoke({
+                "query": query,
+                "document": doc.page_content,
+            }).strip()
+            break
+        except Exception as e:
+            err_msg = str(e)
+            if "429" in err_msg or "rate" in err_msg.lower() or attempt < 2:
+                time.sleep(2.0 * (attempt + 1))
+                continue
+            # Fallback gracefully to original document chunk if compression fails
+            return doc
+
+    if extracted is None:
+        return doc
+
+    # Check for NO_RELEVANT_CONTEXT flag or empty output
+    if not extracted or "NO_RELEVANT_CONTEXT" in extracted.upper():
+        return None
+
+    # Return compressed Document preserving original metadata (e.g. source, page_number)
+    compressed_doc = Document(
+        page_content=extracted,
+        metadata=dict(doc.metadata),
+    )
+    compressed_doc.metadata["compressed"] = True
+    return compressed_doc
+
+
+def compress_documents(
+    documents: List[Document],
+    query: str,
+    extractor_model: BaseChatModel,
+) -> List[Document]:
+    """
+    Compresses all retrieved document chunks.
+    Filters out uninformative chunks and compresses relevant passages to tightly-scoped spans.
+    """
+    compressed_list: List[Document] = []
+    for doc in documents:
+        comp_doc = compress_document(doc, query, extractor_model)
+        if comp_doc is not None:
+            compressed_list.append(comp_doc)
+
+    # If compression pruned all documents, fallback to the original list so the model has context
+    return compressed_list if compressed_list else documents
 
 
 # ============================================================
@@ -90,11 +179,18 @@ def create_answer_chain(model: BaseChatModel):
     return prompt | model | StrOutputParser()
 
 
-def create_rag_chain(retriever: BaseRetriever, model: BaseChatModel):
+def create_rag_chain(
+    retriever: BaseRetriever,
+    model: BaseChatModel,
+    use_compression: bool = True,
+    extractor_model: Optional[BaseChatModel] = None,
+):
     """
     Builds an end-to-end conversational RAG chain adhering to LangChain LCEL architecture.
+    Optionally compresses retrieved documents using the generator / extractor model.
     """
     contextualize_chain = create_contextualize_chain(model)
+    compression_llm = extractor_model if extractor_model is not None else model
 
     def retrieve_context(data: Dict[str, Any]) -> List[Document]:
         chat_history = data.get("chat_history", [])
@@ -112,8 +208,14 @@ def create_rag_chain(retriever: BaseRetriever, model: BaseChatModel):
         else:
             standalone_query = user_input
 
-        # Retrieve documents
-        return retriever.invoke(standalone_query)
+        # 1. Retrieve documents
+        docs = retriever.invoke(standalone_query)
+
+        # 2. Contextual compression using generator LLM as context extractor
+        if use_compression and docs:
+            docs = compress_documents(docs, standalone_query, compression_llm)
+
+        return docs
 
     rag_chain = (
         {
@@ -135,12 +237,21 @@ class ConversationalRAGEngine:
     """
     Encapsulates the conversational RAG lifecycle:
     - Rephrasing queries
-    - Retrieving documents and capturing source metadata
+    - Retrieving documents
+    - Compressing contexts via verbatim span extractor LLM
     - Streaming generation for interactive UI
     """
-    def __init__(self, retriever: BaseRetriever, model: BaseChatModel):
+    def __init__(
+        self,
+        retriever: BaseRetriever,
+        model: BaseChatModel,
+        use_compression: bool = True,
+        extractor_model: Optional[BaseChatModel] = None,
+    ):
         self.retriever = retriever
         self.model = model
+        self.use_compression = use_compression
+        self.extractor_model = extractor_model if extractor_model is not None else model
         self.contextualize_chain = create_contextualize_chain(model)
         self.answer_prompt = ChatPromptTemplate.from_messages([
             ("system", ANSWER_SYSTEM_PROMPT),
@@ -163,8 +274,13 @@ class ConversationalRAGEngine:
             return user_input
 
     def retrieve_documents(self, search_query: str) -> List[Document]:
-        """Retrieves matching context chunks."""
-        return self.retriever.invoke(search_query)
+        """
+        Retrieves matching context chunks and optionally applies contextual compression.
+        """
+        docs = self.retriever.invoke(search_query)
+        if self.use_compression and docs:
+            docs = compress_documents(docs, search_query, self.extractor_model)
+        return docs
 
     def generate_response(
         self, user_input: str, chat_history: List[BaseMessage]
@@ -191,8 +307,8 @@ class ConversationalRAGEngine:
         self, user_input: str, chat_history: List[BaseMessage]
     ) -> Tuple[Generator[str, None, None], List[Document], str]:
         """
-        Retrieves context and returns a token generator for real-time UI streaming,
-        along with the retrieved documents and standalone query.
+        Retrieves context, compresses relevant spans, and returns a token generator
+        for real-time UI streaming, along with the compressed documents and standalone query.
         """
         standalone_query = self.get_standalone_query(user_input, chat_history)
         docs = self.retrieve_documents(standalone_query)
