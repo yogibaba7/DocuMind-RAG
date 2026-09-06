@@ -1,0 +1,99 @@
+﻿{
+    "summary":  {
+                    "passed_cases":  9,
+                    "time_taken_seconds":  443.67,
+                    "total_test_cases":  10,
+                    "generator_model":  "qwen/qwen3.8-27b",
+                    "overall_pass_rate":  "90.0%",
+                    "failed_cases":  1,
+                    "judge_model":  "GroqJudge (qwen/qwen3.8-27b)",
+                    "metrics":  {
+                                    "answer_relevancy":  {
+                                                             "pass_rate":  "100.00%",
+                                                             "average_score":  0.98,
+                                                             "threshold":  0.5,
+                                                             "failed":  0,
+                                                             "passed":  10
+                                                         },
+                                    "faithfulness":  {
+                                                         "pass_rate":  "90.00%",
+                                                         "average_score":  0.91,
+                                                         "threshold":  0.5,
+                                                         "failed":  1,
+                                                         "passed":  9
+                                                     }
+                                }
+                },
+    "test_cases":  [
+                       {
+                           "status":  "Partial (citation marker not in raw ideal context string)",
+                           "faithfulness_score":  0.4,
+                           "relevancy_score":  1,
+                           "id":  1,
+                           "question":  "Can the company terminate me without giving any reason?"
+                       },
+                       {
+                           "status":  "Passed",
+                           "faithfulness_score":  1,
+                           "relevancy_score":  1,
+                           "id":  2,
+                           "question":  "If I face harassment at work, who do I go and complain to?"
+                       },
+                       {
+                           "status":  "Passed",
+                           "faithfulness_score":  1,
+                           "relevancy_score":  1,
+                           "id":  3,
+                           "question":  "Sir, what are the normal office timings here?"
+                       },
+                       {
+                           "status":  "Passed",
+                           "faithfulness_score":  1,
+                           "relevancy_score":  0.95,
+                           "id":  4,
+                           "question":  "Do we get extra pay for working overtime?"
+                       },
+                       {
+                           "status":  "Passed",
+                           "faithfulness_score":  1,
+                           "relevancy_score":  1,
+                           "id":  5,
+                           "question":  "Does the company provide health insurance?"
+                       },
+                       {
+                           "status":  "Passed",
+                           "faithfulness_score":  1,
+                           "relevancy_score":  0.97,
+                           "id":  6,
+                           "question":  "How much vacation leave do I get in my very first year?"
+                       },
+                       {
+                           "status":  "Passed",
+                           "faithfulness_score":  1,
+                           "relevancy_score":  0.94,
+                           "id":  7,
+                           "question":  "How many sick leaves do we earn per month?"
+                       },
+                       {
+                           "status":  "Passed",
+                           "faithfulness_score":  1,
+                           "relevancy_score":  1,
+                           "id":  8,
+                           "question":  "How much notice do I need to give before resigning?"
+                       },
+                       {
+                           "status":  "Passed",
+                           "faithfulness_score":  1,
+                           "relevancy_score":  1,
+                           "id":  9,
+                           "question":  "Is my office email private, or can the company read it?"
+                       },
+                       {
+                           "status":  "Passed",
+                           "faithfulness_score":  1,
+                           "relevancy_score":  0.97,
+                           "id":  10,
+                           "question":  "What is the company\u0027s stand on equal opportunity in jobs?"
+                       }
+                   ]
+}

@@ -83,7 +83,10 @@ Youtube_chatbot_using_rag/
 ├── eval/
 │   ├── eval_retriever.py           # DeepEval automated retriever evaluation
 │   ├── eval_generator.py           # DeepEval automated generator evaluation
-│   └── graq_judge.py               # Custom remote GroqJudge & LLM judges
+│   ├── benchmark_compression.py    # A/B evaluation benchmark for contextual compression
+│   ├── graq_judge.py               # Custom remote GroqJudge & LLM judges
+│   ├── generator_eval_results.json # DeepEval generator test results
+│   └── compression_benchmark_results.json # A/B benchmark metrics
 ├── goldens/
 │   ├── retriever_golden.json       # Golden dataset for retrieval
 │   └── generator_golden.json       # Golden dataset with ideal chunks for generation

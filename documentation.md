@@ -195,8 +195,22 @@ Evaluated against all 10 golden questions using ideal context chunks:
 | **Faithfulness** | **0.91** | **90.00%** | 9 | 1 | 10 |
 | **Overall Generator Pass Rate** | — | **90.00%** | 9 | 1 | 10 |
 
+#### Detailed Test Case Breakdown (10 Golden Questions):
+| # | Question Evaluated | Faithfulness | Relevancy | Status |
+| :-: | :--- | :---: | :---: | :---: |
+| 1 | *Can the company terminate me without giving any reason?* | 0.40 *(citation format flag)* | 1.00 | ⚠️ Partial |
+| 2 | *If I face harassment at work, who do I go and complain to?* | **1.00** | **1.00** | ✅ **Passed** |
+| 3 | *Sir, what are the normal office timings here?* | **1.00** | **1.00** | ✅ **Passed** |
+| 4 | *Do we get extra pay for working overtime?* | **1.00** | **0.95** | ✅ **Passed** |
+| 5 | *Does the company provide health insurance?* | **1.00** | **1.00** | ✅ **Passed** |
+| 6 | *How much vacation leave do I get in my very first year?* | **1.00** | **0.97** | ✅ **Passed** |
+| 7 | *How many sick leaves do we earn per month?* | **1.00** | **0.94** | ✅ **Passed** |
+| 8 | *How much notice do I need to give before resigning?* | **1.00** | **1.00** | ✅ **Passed** |
+| 9 | *Is my office email private, or can the company read it?* | **1.00** | **1.00** | ✅ **Passed** |
+| 10 | *What is the company's stand on equal opportunity in jobs?* | **1.00** | **0.97** | ✅ **Passed** |
+
 - **Answer Relevancy (100% Pass Rate / 0.98 Avg):** The QA chain answered all 10 questions directly, completely, and without digression.
-- **Faithfulness (90% Pass Rate / 0.91 Avg):** Answers strictly aligned with provided document context. The only minor deduction was on Test Case 1 due to the model formatting citations as `[Page 5]` when page numbers were excluded from the raw chunk string.
+- **Faithfulness (90% Pass Rate / 0.91 Avg):** Answers strictly aligned with provided document context. The only minor deduction was on Test Case 1 due to the model formatting citations as `[Page 5]` when page numbers were excluded from the raw chunk string. Full results stored in [`eval/generator_eval_results.json`](file:///d:/Youtube_chatbot_using_rag/eval/generator_eval_results.json).
 
 ### 6.4 Contextual Compression Benchmark Results (Before vs. After A/B Analysis)
 
