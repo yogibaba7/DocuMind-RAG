@@ -49,3 +49,4 @@ timestamp,document_name,document_size_mb,pages,chunks,chunk_size,chunk_overlap,l
 2026-09-05T23:46:00.400992,sample_policies.pdf,0.2827,28,157,500,50,0.1554,1.8191,0.0142,19.8779,2.3453,0.1205,2.6011,0.1087,sentence-transformers/all-MiniLM-L6-v2,0afcff5a423d
 2026-09-05T23:58:34.686399,sample_policies.pdf,0.2827,28,157,500,50,1.0975,0.2576,0.0127,22.3019,0.5765,0.4904,2.5499,0.1109,sentence-transformers/all-MiniLM-L6-v2,0afcff5a423d
 2026-09-06T00:05:17.468745,sample_policies.pdf,0.2827,28,157,500,50,0.813,0.3477,0.0095,29.9125,0.1293,2.187,1.1248,0.2513,sentence-transformers/all-MiniLM-L6-v2,0afcff5a423d
+2026-09-06T10:54:41.294639,sample_policies.pdf,0.2827,28,157,500,50,1.0876,0.2599,0.0093,30.5282,0.6271,0.4508,2.8485,0.0992,sentence-transformers/all-MiniLM-L6-v2,0afcff5a423d

@@ -1,0 +1,253 @@
+{
+  "summary": {
+    "v1": {
+      "avg_context_chars": 1046.3,
+      "avg_reduction_pct": 54.21,
+      "avg_chunks_pruned": 1.14,
+      "avg_gen_time_sec": 2.65,
+      "avg_faithfulness": 0.98,
+      "avg_relevancy": 1.0
+    },
+    "v2": {
+      "avg_context_chars": 965.9,
+      "avg_reduction_pct": 57.75,
+      "avg_chunks_pruned": 1.43,
+      "avg_gen_time_sec": 3.01,
+      "avg_faithfulness": 0.94,
+      "avg_relevancy": 1.0
+    }
+  },
+  "results": [
+    {
+      "id": 1,
+      "question": "What is the company's policy regarding sexual harassment and what disciplinary actions can result from a violation?",
+      "raw_context_chars": 2312,
+      "v1": {
+        "compressed_chars": 1428,
+        "reduction_pct": 38.24,
+        "chunks_retained": 4,
+        "chunks_pruned": 1,
+        "comp_time_sec": 2.88,
+        "gen_time_sec": 1.12,
+        "total_time_sec": 7.07,
+        "faithfulness": 1.0,
+        "relevancy": 1.0,
+        "answer_len": 1266,
+        "has_preamble": true,
+        "answer": "Based on the provided document context, here is the company's policy regarding sexual harassment and the potential disciplinary actions:\n\n**Policy on Sexual Harassment**\n*   **Unlawful and Prohibited:** Sexual harassment is explicitly stated to be unlawful and against company policy [Page 7].\n*   **Inappropriate Behavior:** Even if behavior is not severe enough to create a \"sexually hostile work environment\" (which would be unlawful), it is still considered inappropriate if it makes co-workers uncomfortable. Such behavior may result in disciplinary action regardless of whether it is technically unlawful [Page 8].\n*   **Non-Retaliation:** It is unlawful and expressly against policy to retaliate against an employee for filing a complaint of sexual harassment or for cooperating with an investigation [Page 8].\n*   **Investigation:** The company aims to conduct thorough investigations to determine if harassment occurred and to decide on appropriate actions [Page 9].\n\n**Disciplinary Actions for Violations**\nIf the company determines that a violation of the policy has occurred, it will take appropriate disciplinary action against the offending party. These actions can include:\n*   Counseling\n*   Warnings\n*   Suspensions\n*   Termination\n\n[Page 6, Page 9]"
+      },
+      "v2": {
+        "compressed_chars": 1415,
+        "reduction_pct": 38.8,
+        "chunks_retained": 4,
+        "chunks_pruned": 1,
+        "comp_time_sec": 3.1,
+        "gen_time_sec": 1.19,
+        "total_time_sec": 7.37,
+        "faithfulness": 1.0,
+        "relevancy": 1.0,
+        "answer_len": 1059,
+        "has_preamble": false,
+        "answer": "The company policy explicitly prohibits sexual harassment and other discriminatory harassment, recognizing them as unlawful, and mandates a reporting procedure for affected employees [Page 7]. Even behavior that does not rise to the level of creating a sexually hostile work environment is considered inappropriate if it makes co-workers uncomfortable and may result in disciplinary action regardless of whether it is unlawful [Page 8]. Retaliation against an employee for filing a complaint or cooperating with an investigation is expressly against policy and unlawful [Page 8].\n\n**Disciplinary Actions**\nIf a violation of the policy is determined to have occurred, the company will take appropriate disciplinary action against the offending party, which can include:\n*   Counseling\n*   Warnings\n*   Suspensions\n*   Termination [Page 3, Page 9]\n\n**Investigation Process**\nThe goal of the investigation is to conduct a thorough review to determine whether harassment occurred and to decide on the appropriate action if improper behavior is confirmed [Page 9]."
+      }
+    },
+    {
+      "id": 2,
+      "question": "What are the conditions under which an employee can resign?",
+      "raw_context_chars": 2341,
+      "v1": {
+        "compressed_chars": 339,
+        "reduction_pct": 85.52,
+        "chunks_retained": 2,
+        "chunks_pruned": 3,
+        "comp_time_sec": 17.2,
+        "gen_time_sec": 0.58,
+        "total_time_sec": 25.55,
+        "faithfulness": 1.0,
+        "relevancy": 1.0,
+        "answer_len": 643,
+        "has_preamble": true,
+        "answer": "Based on the provided document, the conditions under which an employee can resign are as follows:\n\n*   **Right to Resign:** An employee has the right to resign from their employment **at any time**.\n*   **Notice and Cause:** The resignation can be made **with or without notice** and **with or without cause** [Page 2].\n*   **Recommended Notice Period:** While not a strict condition for the right to resign, employees are **encouraged** to give at least **10 business days** of written notice. The policy further states that a longer period is desired, and the intention to resign should be made known as far in advance as possible [Page 20]."
+      },
+      "v2": {
+        "compressed_chars": 318,
+        "reduction_pct": 86.42,
+        "chunks_retained": 2,
+        "chunks_pruned": 3,
+        "comp_time_sec": 11.95,
+        "gen_time_sec": 0.47,
+        "total_time_sec": 20.19,
+        "faithfulness": 1.0,
+        "relevancy": 1.0,
+        "answer_len": 380,
+        "has_preamble": false,
+        "answer": "An employee has the right to resign from their employment at any time, with or without notice, and with or without cause [Page 2].\n\n**Notice Requirements**\n*   Employees are encouraged to provide at least 10 business days of written notice [Page 20].\n*   The intention to resign should be communicated as far in advance as possible, as a longer notice period is desired [Page 20]."
+      }
+    },
+    {
+      "id": 3,
+      "question": "What is the company's policy on taking leave, including eligibility and approval requirements?",
+      "raw_context_chars": 2224,
+      "v1": {
+        "compressed_chars": 2000,
+        "reduction_pct": 10.07,
+        "chunks_retained": 5,
+        "chunks_pruned": 0,
+        "comp_time_sec": 20.68,
+        "gen_time_sec": 10.57,
+        "total_time_sec": 33.11,
+        "faithfulness": 1.0,
+        "relevancy": 1.0,
+        "answer_len": 2499,
+        "has_preamble": true,
+        "answer": "Based on the provided document context, the company's leave policies vary by type of leave. Below is a summary of the eligibility and approval requirements for each category:\n\n### **1. Personal Leave**\n*   **Approval Requirements:** All personal leave is subject to prior approval by both the supervisor and the Executive Director.\n*   **Request Format:** Must be requested in hourly increments.\n*   **Eligibility/Payment:** No personal leave benefits are paid upon separation from employment for any reason [Page 16].\n\n### **2. Vacation Leave**\n*   **Eligibility:**\n    *   **Full-Time Employees:** Earn three weeks (15 days) of vacation (specifically mentioned for the third year, with four weeks/20 days for the fourth year and thereafter).\n    *   **Part-Time Employees:** Benefits are prorated accordingly.\n    *   **Temporary Employees:** Ineligible for Vacation benefits [Page 15].\n*   **Approval Requirements:** Use of vacation is subject to approval by the supervisor and Executive Director.\n*   **Request Format:** Must be requested in hourly increments using the appropriate leave request form [Page 15].\n\n### **3. Bereavement Leave**\n*   **Eligibility:** Available for the death of an immediate family member.\n*   **Approval Requirements:**\n    *   The employee must notify the Executive Director immediately.\n    *   Approval occurs in the absence of unusual operating requirements.\n    *   Employees may use available paid leave for additional time off, subject to the Executive Director’s approval and operating needs [Page 18].\n\n### **4. Liberal Leave (Severe Weather)**\n*   **Eligibility:** Applicable when the federal government announces that liberal leave is applicable.\n*   **Approval Requirements:** Annual and/or personal leave may be taken **without** prior scheduling and approval if the employee is unable to reach the office due to severe weather conditions [Page 18].\n\n### **5. Military Leave**\n*   **Eligibility:** Employees inducted into or enlisted in the U.S. Armed Forces, or called to duty as a reserve unit member.\n*   **Approval/Procedure:**\n    *   This is an **unpaid** leave in accordance with applicable law.\n    *   The employee must provide advance notice of the need for leave.\n    *   The organization will request a copy of the employee’s orders, which are kept on record [Page 16].\n*   **Benefit Impact:** Time spent on military leave counts as continuous service for determining eligibility and accrual for various benefit plans and policies [Page 16]."
+      },
+      "v2": {
+        "compressed_chars": 1589,
+        "reduction_pct": 28.55,
+        "chunks_retained": 4,
+        "chunks_pruned": 1,
+        "comp_time_sec": 43.95,
+        "gen_time_sec": 6.34,
+        "total_time_sec": 52.16,
+        "faithfulness": 1.0,
+        "relevancy": 1.0,
+        "answer_len": 2107,
+        "has_preamble": false,
+        "answer": "**Direct Answer:** The company requires prior approval from both the supervisor and Executive Director for most leave types, with specific exceptions for severe weather (liberal leave) and immediate notification for bereavement leave; eligibility varies by employment status (e.g., temporary employees are ineligible for vacation), and all requests must generally be made in hourly increments.\n\n**Eligibility**\n*   **Vacation:** Full-time employees earn three weeks (15 days) of vacation during their third year and four weeks (20 days) per year from the fourth year onward [Page 15].\n*   **Part-Time Employees:** Vacation benefits are prorated accordingly [Page 15].\n*   **Temporary Employees:** Ineligible for Vacation benefits [Page 15].\n*   **Armed Forces:** Employees inducted into or enlisted in the U.S. Armed Forces, or called to duty as a reserve unit member, may take unpaid leave [Page 16].\n\n**Approval Requirements**\n*   **General Rule:** All personal leave is subject to prior approval by the supervisor and Executive Director [Page 16].\n*   **Vacation:** Use of vacation is subject to approval by the supervisor and Executive Director [Page 15].\n*   **Bereavement Leave:** Approval occurs in the absence of unusual operating requirements; employees must notify the Executive Director immediately [Page 18].\n*   **Severe Weather (Liberal Leave):** Annual and/or personal leave may be taken without prior scheduling and approval if the employee is unable to reach the office due to severe weather conditions [Page 18].\n\n**Procedural Requirements**\n*   **Request Format:** Personal leave and vacation must be requested in hourly increments [Page 15, Page 16].\n*   **Documentation:** Vacation requests must use the appropriate leave request form [Page 15].\n*   **Additional Time:** Employees may use available paid leave for additional time off (such as for bereavement) with the Executive Director’s approval, in accordance with operating needs [Page 18].\n\n**Consequences / Separation**\n*   **Payout:** No personal leave benefits are paid upon separation from employment for any reason [Page 16]."
+      }
+    },
+    {
+      "id": 4,
+      "question": "What are the consequences of violating the company's code of conduct?",
+      "raw_context_chars": 2298,
+      "v1": {
+        "compressed_chars": 629,
+        "reduction_pct": 72.63,
+        "chunks_retained": 4,
+        "chunks_pruned": 1,
+        "comp_time_sec": 8.12,
+        "gen_time_sec": 1.61,
+        "total_time_sec": 11.48,
+        "faithfulness": 1.0,
+        "relevancy": 1.0,
+        "answer_len": 601,
+        "has_preamble": true,
+        "answer": "Based on the provided document, the consequences of violating the company's code of conduct include:\n\n*   **Disciplinary Action:** The organization will take appropriate disciplinary action against the offending party.\n*   **Specific Measures:** These actions can include **counseling, warnings, suspensions, and termination** [Page 6, Page 9].\n*   **Employment Condition:** Compliance with the policy is a condition of each employee’s employment [Page 9].\n*   **Inappropriate Behavior:** Even if the behavior is not unlawful, it may be deemed inappropriate and result in disciplinary action [Page 8]."
+      },
+      "v2": {
+        "compressed_chars": 568,
+        "reduction_pct": 75.28,
+        "chunks_retained": 3,
+        "chunks_pruned": 2,
+        "comp_time_sec": 13.16,
+        "gen_time_sec": 1.64,
+        "total_time_sec": 16.56,
+        "faithfulness": 1.0,
+        "relevancy": 1.0,
+        "answer_len": 578,
+        "has_preamble": false,
+        "answer": "Violations of the company's code of conduct may result in disciplinary action, which can include counseling, warnings, suspensions, and termination [Page 6, Page 9]. Additionally, inappropriate behavior may lead to disciplinary action regardless of whether the conduct is unlawful [Page 8].\n\n**Disciplinary Actions / Consequences**\n*   **Potential Penalties**: Counseling, warnings, suspensions, and termination [Page 6, Page 9].\n*   **Scope of Application**: Disciplinary action may be taken for inappropriate behavior even if it does not constitute a legal violation [Page 8]."
+      }
+    },
+    {
+      "id": 5,
+      "question": "What is the company's policy regarding conflicts of interest?",
+      "raw_context_chars": 2362,
+      "v1": {
+        "compressed_chars": 475,
+        "reduction_pct": 79.89,
+        "chunks_retained": 2,
+        "chunks_pruned": 3,
+        "comp_time_sec": 8.25,
+        "gen_time_sec": 0.62,
+        "total_time_sec": 10.4,
+        "faithfulness": 1.0,
+        "relevancy": 1.0,
+        "answer_len": 840,
+        "has_preamble": true,
+        "answer": "Based on the provided document context, the company's policy regarding conflicts of interest includes the following key points:\n\n*   **Prohibition of Conflicting Outside Employment:** Outside employment that constitutes a conflict of interest is strictly prohibited. [Page 23]\n*   **No Income or Material Gain:** Employees are not permitted to receive any income or material gain from individuals or organizations for materials produced or services rendered while performing their jobs with the organization. [Page 23]\n*   **Avoidance of Conflicting Positions:** Employees must avoid placing themselves in positions where their personal interests and those of the organization are, or appear to be, in conflict, or where such conflicts might interfere with the employee's ability to perform their job to the best of their ability. [Page 21]"
+      },
+      "v2": {
+        "compressed_chars": 475,
+        "reduction_pct": 79.89,
+        "chunks_retained": 2,
+        "chunks_pruned": 3,
+        "comp_time_sec": 14.14,
+        "gen_time_sec": 0.65,
+        "total_time_sec": 16.31,
+        "faithfulness": 1.0,
+        "relevancy": 1.0,
+        "answer_len": 903,
+        "has_preamble": false,
+        "answer": "The company prohibits outside employment that constitutes a conflict of interest and forbids employees from receiving income or material gain from external parties for work performed during their employment [Page 23].\n\n**Policy / Rule**\n*   Employees are strictly prohibited from engaging in outside employment that creates a conflict of interest [Page 23].\n*   Employees may not accept any income or material gain from individuals or organizations for materials produced or services rendered while performing their duties with the organization [Page 23].\n\n**Definition / Scope**\n*   A conflict of interest is defined as placing oneself in a position where personal interests and those of the organization are, or appear to be, in conflict [Page 21].\n*   It also includes situations where personal interests might interfere with the employee’s ability to perform their job as well as possible [Page 21]."
+      }
+    },
+    {
+      "id": 6,
+      "question": "What are the employee's rights and responsibilities regarding confidential information?",
+      "raw_context_chars": 2255,
+      "v1": {
+        "compressed_chars": 1248,
+        "reduction_pct": 44.66,
+        "chunks_retained": 5,
+        "chunks_pruned": 0,
+        "comp_time_sec": 16.47,
+        "gen_time_sec": 1.18,
+        "total_time_sec": 20.05,
+        "faithfulness": 0.89,
+        "relevancy": 1.0,
+        "answer_len": 1582,
+        "has_preamble": true,
+        "answer": "Based on the provided document context, here are the employee's rights and responsibilities regarding confidential information:\n\n**Responsibilities and Prohibitions**\n*   **Non-Disclosure Agreement:** Employees are required to sign a non-disclosure agreement as a condition of employment [Page 23].\n*   **Prohibition on Disclosure:** The disclosure, distribution, electronic transmission, or copying of the organization’s confidential information is prohibited [Page 2, Page 23].\n*   **Restricted Sharing:** Employees may not disclose confidential information to:\n    *   Anyone not employed by the organization.\n    *   Other employees who do not need to know such information to assist in rendering services [Page 2].\n*   **Digital Security:** Employees must guard against the disclosure of confidential information through the use of Internet e-mail or news groups [Page 27].\n\n**Consequences of Violation**\n*   **Disciplinary Action:** Any employee who discloses confidential information will be subject to disciplinary action, which may include separation from employment [Page 2, Page 23].\n*   **No Benefit Required:** Disciplinary action applies even if the employee does not actually benefit from the disclosure of the information [Page 2, Page 23].\n\n**Context on Importance**\n*   The protection of privileged and confidential information, including trade secrets, is considered vital to the interests and success of the organization [Page 23].\n\n*Note: The provided context does not specify any \"rights\" regarding confidential information, only obligations and prohibitions.*"
+      },
+      "v2": {
+        "compressed_chars": 1380,
+        "reduction_pct": 38.8,
+        "chunks_retained": 5,
+        "chunks_pruned": 0,
+        "comp_time_sec": 26.31,
+        "gen_time_sec": 5.02,
+        "total_time_sec": 33.73,
+        "faithfulness": 1.0,
+        "relevancy": 1.0,
+        "answer_len": 1548,
+        "has_preamble": false,
+        "answer": "**Responsibilities**\n*   **Non-Disclosure Agreement**: Employees are required to sign a non-disclosure agreement as a condition of employment [Page 23].\n*   **Prohibition on Disclosure**: The disclosure, distribution, electronic transmission, or copying of the organization’s confidential information is strictly prohibited [Page 2, Page 23].\n*   **Restricted Sharing**: Employees may not disclose confidential information to anyone not employed by the organization, nor to other employees who do not need to know such information to assist in rendering services [Page 2].\n*   **Digital Security**: Employees must guard against the disclosure of confidential information through the use of Internet e-mail or news groups [Page 27].\n\n**Consequences / Disciplinary Actions**\n*   **Disciplinary Action**: Any employee who discloses confidential information is subject to disciplinary action, which includes possible separation from employment [Page 2, Page 23].\n*   **No Benefit Required**: Disciplinary action applies even if the employee does not actually benefit from the disclosure of the confidential information [Page 2, Page 23].\n\n**Definition of Confidential Information**\n*   **Scope**: Confidential information includes data regarding customers, vendors, or donors obtained as a result of working for the organization that is not otherwise publicly available [Page 2].\n*   **Importance**: The protection of privileged and confidential information, including trade secrets, is vital to the interests and success of the organization [Page 23]."
+      }
+    },
+    {
+      "id": 7,
+      "question": "Under what circumstances can an employee's employment be terminated?",
+      "raw_context_chars": 2337,
+      "v1": {
+        "compressed_chars": 1205,
+        "reduction_pct": 48.44,
+        "chunks_retained": 5,
+        "chunks_pruned": 0,
+        "comp_time_sec": 16.31,
+        "gen_time_sec": 2.84,
+        "total_time_sec": 21.81,
+        "faithfulness": 1.0,
+        "relevancy": 1.0,
+        "answer_len": 1052,
+        "has_preamble": true,
+        "answer": "Based on the provided document context, an employee's employment can be terminated under the following circumstances:\n\n*   **At-Will Employment:** Unless there is a written employment agreement stating otherwise, all employment is \"at-will.\" This means employees may be terminated **with or without cause** [Page 6, Page 20].\n*   **Excessive Attendance Issues:** Excessive absences, tardiness, or leaving early are grounds for discipline up to and including termination. Depending on circumstances (such as length of employment), the organization may counsel the employee prior to termination [Page 10].\n*   **Lack of Available Position:** If a suitable position is not available (implied in the context of reassignment or lay-off scenarios), the employee’s employment will terminate [Page 18].\n*   **Necessity:** Termination or lay-off may be necessary under certain circumstances, though specific reasons are noted as \"not limited to\" those listed in the text [Page 20].\n\nThe Executive Director holds the authority to discharge an employee [Page 20]."
+      },
+      "v2": {
+        "compressed_chars": 1016,
+        "reduction_pct": 56.53,
+        "chunks_retained": 5,
+        "chunks_pruned": 0,
+        "comp_time_sec": 22.88,
+        "gen_time_sec": 5.74,
+        "total_time_sec": 31.27,
+        "faithfulness": 0.6,
+        "relevancy": 1.0,
+        "answer_len": 787,
+        "has_preamble": false,
+        "answer": "An employee's employment can be terminated under the following circumstances:\n\n*   **At-Will Termination**: Unless a written employment agreement states otherwise, all employment is \"at-will,\" meaning employees may be terminated with or without cause [Page 6].\n*   **Disciplinary Action**: Excessive absences, tardiness, or leaving early constitute grounds for discipline up to and including termination [Page 10].\n*   **Operational Necessity**: Termination or lay-off may be necessary under certain circumstances [Page 20].\n*   **Position Unavailability**: If a suitable position is not available, the employee’s employment will terminate [Page 18].\n\n**Authority**\n*   The Executive Director holds the authority to discharge an employee from the employ of {ORGANIZATION NAME} [Page 20]."
+      }
+    }
+  ]
+}
